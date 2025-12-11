@@ -47,7 +47,11 @@ function App() {
     setIsLoading(true)
     
     try {
-      const response = await fetch(`${API_BASE_URL}/api/player`, {
+      const url = `${API_BASE_URL}/api/player`
+      console.log('Making request to:', url)
+      console.log('Request body:', { tag: cleanTag })
+      
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -55,17 +59,29 @@ function App() {
         body: JSON.stringify({ tag: cleanTag }),
       })
 
+      console.log('Response status:', response.status)
+      console.log('Response headers:', Object.fromEntries(response.headers.entries()))
+
+      // Get response as text first to see what we're actually getting
+      const responseText = await response.text()
+      console.log('Response text (first 500 chars):', responseText.substring(0, 500))
+
       // Check if response is JSON
       const contentType = response.headers.get('content-type')
       if (!contentType || !contentType.includes('application/json')) {
-        const text = await response.text()
-        console.error('Non-JSON response received:', text.substring(0, 500))
-        console.error('Response status:', response.status)
-        console.error('Response headers:', Object.fromEntries(response.headers.entries()))
-        throw new Error(`Backend returned HTML instead of JSON. Status: ${response.status}. This usually means the endpoint doesn't exist or there's a routing issue.`)
+        console.error('Non-JSON response! Full response:', responseText)
+        throw new Error(`Backend returned HTML instead of JSON. Status: ${response.status}. Response: ${responseText.substring(0, 200)}`)
       }
 
-      const data = await response.json()
+      // Try to parse as JSON
+      let data
+      try {
+        data = JSON.parse(responseText)
+      } catch (parseError) {
+        console.error('Failed to parse JSON:', parseError)
+        console.error('Response was:', responseText)
+        throw new Error(`Invalid JSON response: ${responseText.substring(0, 200)}`)
+      }
 
       if (!response.ok) {
         // Error from backend
