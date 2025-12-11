@@ -50,6 +50,14 @@ function App() {
         body: JSON.stringify({ tag: cleanTag }),
       })
 
+      // Check if response is JSON
+      const contentType = response.headers.get('content-type')
+      if (!contentType || !contentType.includes('application/json')) {
+        const text = await response.text()
+        console.error('Non-JSON response:', text.substring(0, 200))
+        throw new Error(`Backend returned non-JSON response. Check API URL: ${API_BASE_URL}`)
+      }
+
       const data = await response.json()
 
       if (!response.ok) {
@@ -62,7 +70,14 @@ function App() {
       
     } catch (err) {
       // Handle errors - reset to starting screen
-      const errorMessage = err instanceof Error ? err.message : 'An unexpected error occurred'
+      let errorMessage = 'An unexpected error occurred'
+      
+      if (err instanceof Error) {
+        errorMessage = err.message
+      } else if (err instanceof TypeError && err.message.includes('fetch')) {
+        errorMessage = `Cannot connect to backend. Check if API URL is correct: ${API_BASE_URL}`
+      }
+      
       setError(errorMessage)
       setPlayerData(null)
       
