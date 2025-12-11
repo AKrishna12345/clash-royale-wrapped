@@ -29,6 +29,16 @@ async def root():
 async def health():
     return {"status": "healthy"}
 
+@app.get("/test")
+async def test():
+    """Test endpoint to verify API is working"""
+    return {
+        "status": "ok",
+        "proxy_enabled": os.getenv("USE_PROXY", "true"),
+        "api_base": "https://proxy.royaleapi.dev/v1" if os.getenv("USE_PROXY", "true").lower() == "true" else "https://api.clashroyale.com/v1",
+        "has_token": bool(os.getenv("CLASH_ROYALE_API_TOKEN"))
+    }
+
 @app.post("/api/player", response_model=PlayerInfoResponse)
 async def get_player(player_request: PlayerTagRequest):
     """

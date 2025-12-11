@@ -59,8 +59,10 @@ function App() {
       const contentType = response.headers.get('content-type')
       if (!contentType || !contentType.includes('application/json')) {
         const text = await response.text()
-        console.error('Non-JSON response:', text.substring(0, 200))
-        throw new Error(`Backend returned non-JSON response. Check API URL: ${API_BASE_URL}`)
+        console.error('Non-JSON response received:', text.substring(0, 500))
+        console.error('Response status:', response.status)
+        console.error('Response headers:', Object.fromEntries(response.headers.entries()))
+        throw new Error(`Backend returned HTML instead of JSON. Status: ${response.status}. This usually means the endpoint doesn't exist or there's a routing issue.`)
       }
 
       const data = await response.json()
