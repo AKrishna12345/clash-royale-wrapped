@@ -1,16 +1,21 @@
+import os
 from fastapi import FastAPI, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from api.clash_royale import get_player_info, get_player_battlelog, ClashRoyaleAPIError, validate_tag_format
 from api.analysis import analyze_player
 from models.schemas import PlayerTagRequest, PlayerInfoResponse, ErrorResponse
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = FastAPI(title="Clash Royale Wrapped API")
 
-# Configure CORS
+# Configure CORS - allow origins from environment variable or default to localhost
+allowed_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173").split(",")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # Vite default port
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

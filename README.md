@@ -103,11 +103,20 @@ clash-royale-wrapped/
 └── README.md
 ```
 
+## Deployment
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions.
+
+Quick deployment options:
+- **Frontend**: Deploy to [Vercel](https://vercel.com) or [Netlify](https://netlify.com)
+- **Backend**: Deploy to [Railway](https://railway.app) or [Render](https://render.com)
+
 ## Notes
 
 - The Clash Royale API has rate limits (typically 300 requests per 60 seconds)
 - Battle log data may be limited or unavailable for some players
 - Make sure to keep your API token secure and never commit it to version control
+- For production, update CORS settings in `backend/main.py` or via `ALLOWED_ORIGINS` environment variable
 
 ## License
 
