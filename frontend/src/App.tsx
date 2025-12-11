@@ -94,10 +94,15 @@ function App() {
       // Handle errors - reset to starting screen
       let errorMessage = 'An unexpected error occurred'
       
+      console.error('Full error object:', err)
+      console.error('Error type:', err instanceof Error ? err.constructor.name : typeof err)
+      
       if (err instanceof Error) {
+        console.error('Error message:', err.message)
+        console.error('Error stack:', err.stack)
         errorMessage = err.message
       } else if (err instanceof TypeError && err.message.includes('fetch')) {
-        errorMessage = `Cannot connect to backend. Check if API URL is correct: ${API_BASE_URL}`
+        errorMessage = `Cannot connect to backend. This could be a CORS issue or network problem. Check API URL: ${API_BASE_URL}`
       }
       
       setError(errorMessage)
