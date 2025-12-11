@@ -4,6 +4,11 @@ import Results from './Results'
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
 
+// Debug: Log API URL (check browser console)
+if (import.meta.env.DEV) {
+  console.log('API Base URL:', API_BASE_URL)
+}
+
 interface PlayerData {
   success: boolean
   data: {
