@@ -5,7 +5,15 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-CLASH_ROYALE_API_BASE = "https://api.clashroyale.com/v1"
+# Use RoyaleAPI proxy to avoid IP whitelist issues
+# Set USE_PROXY=false to use direct API (requires static IP whitelist)
+USE_PROXY = os.getenv("USE_PROXY", "true").lower() == "true"
+
+if USE_PROXY:
+    CLASH_ROYALE_API_BASE = "https://proxy.royaleapi.dev/v1"
+else:
+    CLASH_ROYALE_API_BASE = "https://api.clashroyale.com/v1"
+
 API_TOKEN = os.getenv("CLASH_ROYALE_API_TOKEN")
 
 
