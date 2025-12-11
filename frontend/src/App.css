@@ -186,6 +186,34 @@
   }
 }
 
+/* Error Message */
+.error-message {
+  background: rgba(220, 38, 38, 0.2);
+  border: 2px solid rgba(220, 38, 38, 0.5);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem auto;
+  max-width: 600px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  animation: fadeInDown 0.5s ease-out;
+  backdrop-filter: blur(10px);
+}
+
+.error-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.error-message p {
+  color: #ff6b6b;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0;
+  flex: 1;
+}
+
 /* Form Section */
 .form-section {
   margin: 3rem 0;

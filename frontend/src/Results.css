@@ -1,0 +1,405 @@
+.results-app {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  position: relative;
+  overflow-x: hidden;
+  padding: 2rem 1rem;
+}
+
+.results-app::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(0, 150, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.results-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Header */
+.results-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.results-title {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0.5rem 0;
+  text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+  letter-spacing: 2px;
+}
+
+.results-subtitle {
+  font-size: 1.3rem;
+  color: #b8c5d6;
+  margin-top: 0.5rem;
+  font-weight: 300;
+}
+
+/* Try Again Button */
+.try-again-button {
+  display: block;
+  margin: 2rem auto;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 215, 0, 0.5);
+  border-radius: 12px;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffd700;
+  cursor: pointer;
+  transition: all 0.3s;
+  backdrop-filter: blur(10px);
+}
+
+.try-again-button:hover {
+  background: rgba(255, 215, 0, 0.2);
+  border-color: #ffd700;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+/* Insights Grid */
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.insight-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.insight-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(255, 215, 0, 0.2);
+  border-color: rgba(255, 215, 0, 0.3);
+}
+
+.insight-icon {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.insight-title {
+  color: #ffd700;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+}
+
+/* Loyal Cards */
+.loyal-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.loyal-card-item {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-left: 3px solid #ffd700;
+}
+
+.card-rank {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffd700;
+  min-width: 40px;
+}
+
+.card-name {
+  flex: 1;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.card-count {
+  color: #b8c5d6;
+  font-size: 0.9rem;
+}
+
+/* Streak Display */
+.streak-display {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.streak-number {
+  display: block;
+  font-size: 4rem;
+  font-weight: 800;
+  color: #ffd700;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.streak-label {
+  color: #b8c5d6;
+  font-size: 1.1rem;
+}
+
+/* Percentage Display */
+.percentage-display {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.percentage-number {
+  display: block;
+  font-size: 4rem;
+  font-weight: 800;
+  color: #ffd700;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.percentage-label {
+  color: #b8c5d6;
+  font-size: 1.1rem;
+}
+
+/* Archetype Display */
+.archetype-display {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.archetype-name {
+  display: inline-block;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #ffd700;
+  padding: 1rem 2rem;
+  background: rgba(255, 215, 0, 0.1);
+  border-radius: 12px;
+  border: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+/* Rare Gem */
+.rare-gem-display {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.gem-name {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffd700;
+  margin-bottom: 1rem;
+}
+
+.gem-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  color: #b8c5d6;
+  font-size: 1rem;
+}
+
+/* Nemesis */
+.nemesis-display {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.nemesis-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ff6b6b;
+  margin-bottom: 0.5rem;
+}
+
+.nemesis-tag {
+  color: #b8c5d6;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.nemesis-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.nemesis-wins {
+  color: #4ade80;
+  font-weight: 600;
+}
+
+.nemesis-losses {
+  color: #ff6b6b;
+  font-weight: 600;
+}
+
+.nemesis-message {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 215, 0, 0.1);
+  border-radius: 12px;
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  color: #ffd700;
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* Peak Hours */
+.peak-hours-display {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.peak-hour {
+  display: block;
+  font-size: 3rem;
+  font-weight: 800;
+  color: #ffd700;
+  margin-bottom: 0.5rem;
+}
+
+.peak-winrate {
+  color: #b8c5d6;
+  font-size: 1.1rem;
+}
+
+/* Trophy Stats */
+.trophy-card {
+  grid-column: span 2;
+}
+
+.trophy-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  padding: 1rem 0;
+}
+
+.trophy-stat {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-label {
+  display: block;
+  color: #b8c5d6;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.stat-value {
+  display: block;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffd700;
+}
+
+.stat-value.positive {
+  color: #4ade80;
+}
+
+.stat-value.negative {
+  color: #ff6b6b;
+}
+
+.no-data {
+  color: #b8c5d6;
+  text-align: center;
+  font-style: italic;
+  padding: 2rem 0;
+}
+
+.results-footer {
+  text-align: center;
+  margin-top: 4rem;
+  padding: 2rem 0;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .results-title {
+    font-size: 2rem;
+  }
+  
+  .insights-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .trophy-card {
+    grid-column: span 1;
+  }
+  
+  .trophy-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .streak-number,
+  .percentage-number {
+    font-size: 3rem;
+  }
+}
+
