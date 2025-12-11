@@ -1,0 +1,21 @@
+# Core FastAPI dependencies
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+
+# HTTP client for API calls
+httpx==0.25.0
+
+# Environment variables
+python-dotenv==1.0.0
+
+# Optional: For future image generation/sharing features
+# pillow==10.2.0
+
+# Optional: For advanced data analysis
+# numpy==1.26.4
+# pandas==2.1.4
+
+# Optional: For caching API responses
+# redis==5.0.3
+
